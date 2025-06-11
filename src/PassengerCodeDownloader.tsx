@@ -5,6 +5,9 @@ import QRCode from 'react-qr-code';
 import type { Passenger } from './types/Passengers';
 import downloadElementAsImage from './utils/downloadElementAsImage';
 import SvgRenderer from './components/SvgRenderer';
+import downloadElementAsImage2 from './utils/downloadElementAsImage/option2';
+import downloadElementAsImage3 from './utils/downloadElementAsImage/option3';
+import downloadElementAsImage4 from './utils/downloadElementAsImage/option4';
 
 type Props = {
   handleClose: () => void;
@@ -55,14 +58,62 @@ export default function PassengerCodeDownloader({
       svgElement.style.padding = '32px';
       svgElement.style.width = '320px';
 
-      downloadElementAsImage(svgElement, `TraxiQR_${title}`);
+      downloadElementAsImage(svgElement, `TraxiQR_1_${title}`);
+      svgElement.style.padding = originalPadding;
+      svgElement.style.width = originalWidth;
+    }
+  }, [title]);
+
+  const downloadPassengerCode2 = useCallback(() => {
+    const svgElement = document.getElementById('passengerCode') as HTMLElement;
+
+    if (svgElement) {
+      const originalPadding = svgElement.style.padding;
+      const originalWidth = svgElement.style.width;
+      svgElement.style.padding = '0px';
+      svgElement.style.padding = '32px';
+      svgElement.style.width = '320px';
+
+      downloadElementAsImage2(svgElement, `TraxiQR_2_${title}`);
+      svgElement.style.padding = originalPadding;
+      svgElement.style.width = originalWidth;
+    }
+  }, [title]);
+
+  const downloadPassengerCode3 = useCallback(() => {
+    const svgElement = document.getElementById('passengerCode') as HTMLElement;
+
+    if (svgElement) {
+      const originalPadding = svgElement.style.padding;
+      const originalWidth = svgElement.style.width;
+      svgElement.style.padding = '0px';
+      svgElement.style.padding = '32px';
+      svgElement.style.width = '320px';
+
+      downloadElementAsImage3(svgElement, `TraxiQR_3_${title}`);
+      svgElement.style.padding = originalPadding;
+      svgElement.style.width = originalWidth;
+    }
+  }, [title]);
+
+  const downloadPassengerCode4 = useCallback(() => {
+    const svgElement = document.getElementById('passengerCode') as HTMLElement;
+
+    if (svgElement) {
+      const originalPadding = svgElement.style.padding;
+      const originalWidth = svgElement.style.width;
+      svgElement.style.padding = '0px';
+      svgElement.style.padding = '32px';
+      svgElement.style.width = '320px';
+
+      downloadElementAsImage4(svgElement, `TraxiQR_4_${title}`);
       svgElement.style.padding = originalPadding;
       svgElement.style.width = originalWidth;
     }
   }, [title]);
 
   return (
-    <Box sx={{ marginTop: -2 }}>
+    <Box sx={{ marginTop: -2, width: '320px' }}>
       <Stack
         id='passengerCode'
         alignItems='center'
@@ -118,15 +169,46 @@ export default function PassengerCodeDownloader({
         startIcon={<FileDownloadOutlined />}
         sx={{ marginBottom: 2 }}
       >
-        {'download'}
+        {'download 1_dataURL'}
       </Button>
       <Button
         fullWidth
-        variant='outlined'
-        onClick={handleClose}
-        startIcon={<Close />}
+        variant='contained'
+        onClick={() => {
+          setDownloadClickCount(downloadClickCount + 1);
+          downloadPassengerCode2();
+        }}
+        disabled={disableDownload}
+        startIcon={<FileDownloadOutlined />}
+        sx={{ marginBottom: 2 }}
       >
-        {'close'}
+        {'download 2_blob'}
+      </Button>
+      <Button
+        fullWidth
+        variant='contained'
+        onClick={() => {
+          setDownloadClickCount(downloadClickCount + 1);
+          downloadPassengerCode3();
+        }}
+        disabled={disableDownload}
+        startIcon={<FileDownloadOutlined />}
+        sx={{ marginBottom: 2 }}
+      >
+        {'download 3_imagen'}
+      </Button>
+      <Button
+        fullWidth
+        variant='contained'
+        onClick={() => {
+          setDownloadClickCount(downloadClickCount + 1);
+          downloadPassengerCode4();
+        }}
+        disabled={disableDownload}
+        startIcon={<FileDownloadOutlined />}
+        sx={{ marginBottom: 2 }}
+      >
+        {'download 4_share'}
       </Button>
     </Box>
   );
