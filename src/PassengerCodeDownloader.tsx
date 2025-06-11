@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Close, FileDownloadOutlined } from '@mui/icons-material';
+import { FileDownloadOutlined } from '@mui/icons-material';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import QRCode from 'react-qr-code';
 import type { Passenger } from './types/Passengers';
@@ -23,10 +23,7 @@ const TEXT_STYLES = {
   lineHeight: 1.5,
 };
 
-export default function PassengerCodeDownloader({
-  handleClose,
-  passengerData,
-}: Props) {
+export default function PassengerCodeDownloader({ passengerData }: Props) {
   const [downloadClickCount, setDownloadClickCount] = useState(0);
 
   let title = passengerData?.id_company;
