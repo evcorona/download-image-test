@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { Close, FileDownloadOutlined } from '@mui/icons-material';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import QRCode from 'react-qr-code';
-import { Passenger } from './types/Passengers';
+import type { Passenger } from './types/Passengers';
 import downloadElementAsImage from './utils/downloadElementAsImage';
 import SvgRenderer from './components/SvgRenderer';
 
